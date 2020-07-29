@@ -2,16 +2,22 @@ from telegram.ext import Updater, Dispatcher, CommandHandler, MessageHandler, Fi
 from session_manager import SessionManager
 from io import BytesIO
 from threading import Thread
-import os
+import config
 import assistant
 import voice
 import os
 import logging
 
 #Variaveis de ambiente de configuracao
-TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
-PORT = int(os.environ.get('PORT', '8443'))
-WEBHOOK_URL = os.environ.get('TELEGRAM_WEBHOOK')
+#TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+#PORT = int(os.environ.get('PORT', '8443'))
+#WEBHOOK_URL = os.environ.get('TELEGRAM_WEBHOOK')
+
+
+TOKEN = config.TOKEN
+PORT = config.PORT
+WEBHOOK_URL = config.WEBHOOK_URL
+
 
 #configura logging e config
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
