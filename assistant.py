@@ -1,17 +1,16 @@
 from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from session_manager import SessionManager
-import os
+import config
 import logging
 import f1actions
 
-IAM_TOKEN = os.environ.get('WATSON_ASSISTANT_TOKEN')
-ASSISTANT_URL = os.environ.get('WATSON_ASSISTANT_URL')
+IAM_TOKEN = config.IAM_TOKEN
+ASSISTANT_URL = config.ASSISTANT_URL
+ASSISTANT_ID = config.ASSISTANT_ID
 
 logger = logging.getLogger('TelegramBot')
-
 authenticator = IAMAuthenticator(IAM_TOKEN)
-assistant_id = os.environ.get('ASSISTANT_ID')
 
 assistant = AssistantV2(
     version='2020-02-05',
@@ -21,7 +20,7 @@ assistant = AssistantV2(
 assistant.set_service_url(ASSISTANT_URL)
 
 def create_session():
-    response = assistant.create_session(assistant_id)
+    response = assistant.create_session(ASSISTANT_ID)
     return response.get_result()['session_id']
 
 def validate_session(chat_id):
@@ -45,7 +44,7 @@ def execute_action(session_id, response):
         result_data = f1actions.action_handler(action['name'], action['parameters'], action['result_variable'])
         #envia dados de resposta como contexto para o Watson Assistant
         response = assistant.message(
-            assistant_id=assistant_id,
+            assistant_id=ASSISTANT_ID,
             session_id=session_id,
             context=result_data
         ).get_result()
@@ -55,7 +54,7 @@ def execute_action(session_id, response):
 def send_message(session_id, message):
     logger.info('Enviando mensagem para o Assistant: ' + message)
     response = assistant.message(
-        assistant_id=assistant_id,
+        assistant_id=ASSISTANT_ID,
         session_id=session_id,
         input={
             'message_type': 'text',

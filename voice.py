@@ -1,14 +1,13 @@
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson import TextToSpeechV1, SpeechToTextV1
 from io import BytesIO
-import os
+import config
 import logging
 
-T2S_TOKEN = os.environ.get('T2S_TOKEN')
-T2S_URL = os.environ.get('T2S_URL')
-S2T_TOKEN = os.environ.get('S2T_TOKEN')
-S2T_URL = os.environ.get('S2T_URL')
-
+T2S_TOKEN = config.T2S_TOKEN
+T2S_URL = config.T2S_URL
+S2T_TOKEN = config.S2T_TOKEN
+S2T_URL = config.S2T_URL
 
 logger = logging.getLogger('TelegramBot')
 
