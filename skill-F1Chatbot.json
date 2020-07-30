@@ -17,6 +17,9 @@
         },
         {
           "text": "Ordem"
+        },
+        {
+          "text": "campeonato"
         }
       ],
       "description": ""
@@ -24,12 +27,6 @@
     {
       "intent": "saudacao",
       "examples": [
-        {
-          "text": "Olá"
-        },
-        {
-          "text": "Oi"
-        },
         {
           "text": "Alô"
         },
@@ -41,6 +38,12 @@
         },
         {
           "text": "Bom dia"
+        },
+        {
+          "text": "Oi"
+        },
+        {
+          "text": "Olá"
         }
       ],
       "description": ""
