@@ -5,11 +5,11 @@ import logging
 base_url = 'http://ergast.com/api/f1/'
 
 def pesquisa_pilotos(temporada):
-    endpoint = base_url + str(temporada) + '/drivers.json';
+    endpoint = base_url + str(temporada) + '/drivers.json?limit=1000';
     return requests.get(endpoint).json()['MRData']
 
 def pesquisa_equipes(temporada):
-    endpoint = base_url + str(temporada) + '/constructors.json';
+    endpoint = base_url + str(temporada) + '/constructors.json?limit=1000';
     return requests.get(endpoint).json()['MRData']
 
 def pesquisa_classificacao(temporada):
