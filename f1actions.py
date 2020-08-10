@@ -78,13 +78,13 @@ def pesquisa_classificacao(parameters, return_var):
 
     classificacao_str += str(temporada) + ' de fórmula 1: \n'
 
-    classificacao_pilotos = defaultdict(int)
-
+    classificacao_pilotos = defaultdict(float)
+    classificacao_pilotos[nome_piloto] += float(resultado['points'])
     for corrida in corridas:
         for resultado in corrida['Results']:
             piloto = resultado['Driver']
             nome_piloto = piloto['givenName'] + " " + piloto['familyName']
-            classificacao_pilotos[nome_piloto] += int(resultado['points'])
+            classificacao_pilotos[nome_piloto] += float(resultado['points'])
 
     classificacao_pilotos = {k: v for k, v in sorted(classificacao_pilotos.items(), key=lambda item: item[1], reverse=True)}
 
