@@ -79,7 +79,6 @@ def pesquisa_classificacao(parameters, return_var):
     classificacao_str += str(temporada) + ' de fórmula 1: \n'
 
     classificacao_pilotos = defaultdict(float)
-    classificacao_pilotos[nome_piloto] += float(resultado['points'])
     for corrida in corridas:
         for resultado in corrida['Results']:
             piloto = resultado['Driver']
